@@ -385,6 +385,66 @@ form select {
   .column-div {
     width: 100%;
   }
+  #task-modal {
+  width: 90%;
+  max-width: 600px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+/* Default Light Theme */
+:root {
+  --primary-bg: #ffffff;
+  --secondary-bg: #f4f7fd;
+  --primary-text: #000000;
+  --secondary-text: #828fa3;
+}
+
+/* Dark Theme */
+[data-theme="dark"] {
+  --primary-bg: #1e1e2e;
+  --secondary-bg: #282a36;
+  --primary-text: #ffffff;
+  --secondary-text: #c3c3c3;
+}
+
+/* Apply Theme Variables */
+body {
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
+}
+
+/* Sidebar */
+.side-bar {
+  background-color: var(--secondary-bg);
+}
+
+/* Header */
+header {
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
+  border-bottom: 1px solid var(--secondary-text);
+}
+
+/* Modal */
+#task-modal {
+  background-color: var(--primary-bg);
+  color: var(--primary-text);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* Buttons */
+button {
+  background-color: var(--secondary-bg);
+  color: var(--primary-text);
+  border: 1px solid var(--secondary-text);
+  transition: background 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: var(--primary-text);
+  color: var(--secondary-bg);
+}
 }
 
 /******** Mobile ********/

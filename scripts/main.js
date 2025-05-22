@@ -1,8 +1,5 @@
-import { initTasks } from "./tasks.js";
-import { setupModalCloseHandler } from "./modal.js";
+import { renderTasks } from "./tasks.js";
 
-// Initialize everything when DOM loads
 document.addEventListener("DOMContentLoaded", () => {
-  initTasks();
-  setupModalCloseHandler();
+  renderTasks();
 });

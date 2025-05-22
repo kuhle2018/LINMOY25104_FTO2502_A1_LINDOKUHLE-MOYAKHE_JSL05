@@ -1,35 +1,30 @@
-import { fetchTasks } from "./api.js";
-import { saveTasksToLocalStorage, loadTasksFromLocalStorage } from "./storage.js";
+import { getTasksFromStorage, saveTasksToStorage } from "./storage.js";
 
 /**
- * Renders tasks into their respective columns.
- * @param {Array} tasks - List of tasks.
+ * Creates a single task DOM element.
+ * @param {Object} task - Task data object.
+ * @returns {HTMLElement} The created task div element.
  */
-function renderTasks(tasks) {
-  document.querySelectorAll(".tasks-container").forEach(container => {
-    container.innerHTML = "";
-  });
+function createTaskElement(task) {
+  const taskDiv = document.createElement("div");
+  taskDiv.className = "task-div";
+  taskDiv.textContent = task.title;
+  taskDiv.dataset.taskId = task.id;
 
-  tasks.forEach(task => {
-    const taskElement = document.createElement("div");
-    taskElement.className = "task-div";
-    taskElement.textContent = task.title;
-    taskElement.dataset.taskId = task.id;
+  taskDiv.addEventListener("click", () => openTaskModal(task));
 
+  return taskDiv;
+}
+
+/**
+ * Renders tasks in their respective columns.
+ */
+export function renderTasks() {
+  const tasks = getTasksFromStorage();
+  document.querySelectorAll(".tasks-container").forEach((container) => container.innerHTML = "");
+
+  tasks.forEach((task) => {
     const container = document.querySelector(`.column-div[data-status="${task.status}"] .tasks-container`);
-    if (container) container.appendChild(taskElement);
-    
-    taskElement.addEventListener("click", () => openTaskModal(task));
+    if (container) container.appendChild(createTaskElement(task));
   });
 }
-
-/**
- * Initializes tasks from API or local storage.
- */
-export async function initTasks() {
-  const tasks = await fetchTasks();
-  renderTasks(tasks);
-  saveTasksToLocalStorage(tasks);
-}
-
-document.addEventListener("DOMContentLoaded", initTasks);
