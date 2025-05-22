@@ -1,8 +1,0 @@
-[build]
-  publish = "/"  # Ensure this is the folder containing your index.html
-  command = ""  # No build command needed unless using frameworks
-
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200

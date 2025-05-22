@@ -4,8 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;1,400&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet"/>
 
     <link rel="stylesheet" href="./styles.css" />
     <link
@@ -14,8 +13,7 @@
       sizes="32x32"
       href="./assets/favicon.svg"
     />
-    <script defer src="./scripts.js" type="module"></script>
-    <title>Kanban Task Management</title>
+<title>Kanban Task Management</title>
   </head>
 
   <body>
@@ -102,5 +100,14 @@
         </select>
       </form>
     </dialog>
+   <!-- Link all scripts just before closing </body> -->
+<script src="scripts/initialData.js"></script>
+<script src="scripts/api.js"></script>
+<script src="scripts/storage.js"></script>
+<script src="scripts/tasks.js"></script>
+<script src="scripts/modal.js"></script>
+<script src="scripts/scripts.js"></script> <!-- Move this here -->
+<script src="scripts/main.js"></script> <!-- Main should be last -->
+
   </body>
 </html>
