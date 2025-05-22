@@ -432,16 +432,33 @@ header {
   color: var(--primary-text);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
 }
-
-/* Buttons */
-button {
+.theme-btn {
+  width: 100%;
+  padding: 10px;
   background-color: var(--secondary-bg);
   color: var(--primary-text);
-  border: 1px solid var(--secondary-text);
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
   transition: background 0.3s ease-in-out;
 }
 
-button:hover {
+.theme-btn:hover {
+  background-color: var(--primary-text);
+  color: var(--secondary-bg);
+}
+.theme-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--secondary-bg);
+  color: var(--primary-text);
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease-in-out;
+}
+
+.theme-btn:hover {
   background-color: var(--primary-text);
   color: var(--secondary-bg);
 }

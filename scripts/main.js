@@ -1,5 +1,5 @@
-import { renderTasks } from "./tasks.js";
+const themeToggleBtn = document.getElementById("theme-toggle");
 
-document.addEventListener("DOMContentLoaded", () => {
-  renderTasks();
+themeToggleBtn.addEventListener("click", () => {
+  document.documentElement.toggleAttribute("data-theme", "dark");
 });

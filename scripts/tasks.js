@@ -1,4 +1,4 @@
-import { getTasksFromStorage, saveTasksToStorage } from "./storage.js";
+import { getTasksFromStorage } from "./storage.js";
 
 /**
  * Creates a single task DOM element.
@@ -11,6 +11,7 @@ function createTaskElement(task) {
   taskDiv.textContent = task.title;
   taskDiv.dataset.taskId = task.id;
 
+  // Clicking on task opens modal
   taskDiv.addEventListener("click", () => openTaskModal(task));
 
   return taskDiv;
@@ -21,6 +22,8 @@ function createTaskElement(task) {
  */
 export function renderTasks() {
   const tasks = getTasksFromStorage();
+  
+  // Clear previous tasks before re-rendering
   document.querySelectorAll(".tasks-container").forEach((container) => container.innerHTML = "");
 
   tasks.forEach((task) => {
