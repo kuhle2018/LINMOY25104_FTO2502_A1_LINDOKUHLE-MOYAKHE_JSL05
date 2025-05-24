@@ -2,7 +2,7 @@
    Global & Root Variables
 ======================== */
 * {
-  box-sizing: border-box; /* Ensures padding and border are included in total element size */
+  box-sizing: border-box;
 }
 
 :root {
@@ -10,8 +10,12 @@
   --secondary-color: #f4f7fd;
   --primary-font-color: #000000;
   --secondary-font-color: #828fa3;
-  --primary-box-shadow: 0px 4px 6px rgba(54, 78, 126, 0.1015); /* Subtle shadow for card depth */
-  --sidebar-width: 300px; /* Sidebar fixed width */
+  --primary-box-shadow: 0px 4px 6px rgba(54, 78, 126, 0.1015);
+  --sidebar-width: 300px;
+  --bg-color: #f4f7fd;
+  --text-color: #22223b;
+  --sidebar-bg: #fff;
+  --footer-bg: #fff;
 }
 
 /* ================
@@ -19,13 +23,15 @@
 ================ */
 body {
   font-family: "Plus Jakarta Sans", sans-serif;
-  display: flex; /* Allow layout to span horizontally */
+  display: flex;
   flex-direction: row;
   width: 100%;
   min-height: 100vh;
   margin: 0;
   background-color: var(--secondary-color);
-  font-size: 1rem; /* Base font size for rem scaling */
+  font-size: 1rem;
+  background: var(--bg-color);
+  color: var(--text-color);
 }
 
 /* ================
@@ -35,19 +41,20 @@ body {
   display: flex;
   flex-direction: column;
   background-color: var(--primary-color);
-  border-right: 1px solid #e4ebfa; /* Light divider */
+  border-right: 1px solid #e4ebfa;
   width: var(--sidebar-width);
   height: 100vh;
+  background: var(--sidebar-bg);
 }
 
 #side-logo-div {
-  margin: 33px 113px 54px 34px; /* Spacing around logo */
+  margin: 33px 113px 54px 34px;
   display: flex;
   justify-content: flex-start;
 }
 
 #logo {
-  width: 100%; /* Make logo responsive within container */
+  width: 100%;
 }
 
 .boards-nav-links-div {
@@ -57,39 +64,39 @@ body {
 }
 
 #headline-sidepanel {
-  padding: 0 12px 0 50px; /* Aligns section content from left and right */
+  padding: 0 12px 0 50px;
 }
 
 h4 {
   color: var(--secondary-font-color);
   font-size: 0.75rem;
-  letter-spacing: 0.125rem; /* Makes heading more spaced */
+  letter-spacing: 0.125rem;
 }
 
 .board-btn {
   font-family: inherit;
   display: flex;
   align-items: center;
-  gap: 10px; /* Space between icon and text */
+  gap: 10px;
   background-color: #635fc7;
   color: #fff;
   border: none;
-  border-radius: 0 100px 100px 0; /* Pill shape only on right side */
+  border-radius: 0 100px 100px 0;
   height: 48px;
   width: 276px;
   padding: 28px 12px 28px 50px;
   font-size: 0.9375rem;
   font-weight: bold;
   cursor: pointer;
-  overflow: hidden; /* Prevents overflowed text/icons from showing */
+  overflow: hidden;
 }
 
 /* ===============
    Main Layout
 ================ */
 #layout {
-  flex: 1; /* Fills remaining space beside sidebar */
-  overflow-x: hidden; /* Prevent horizontal scroll */
+  flex: 1;
+  overflow-x: hidden;
   width: 100%;
 }
 
@@ -116,7 +123,23 @@ header {
 }
 
 .logo-mobile {
-  display: none; /* Hidden on desktop; shown on smaller screens */
+  display: none;
+}
+#add-new-task-btn {
+  background-color: #635fc7;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-left: 16px;
+}
+
+#add-new-task-btn:hover {
+  background-color: #4b47a3;
 }
 
 /* ===============
@@ -131,11 +154,8 @@ header {
 
 .card-column-main {
   display: grid;
-  grid-template-columns: repeat(
-    3,
-    minmax(0, 304px)
-  ); /* 3 columns with min size */
-  gap: 8px; /* Space between columns */
+  grid-template-columns: repeat(3, minmax(0, 304px));
+  gap: 8px;
 }
 
 .column-div {
@@ -149,7 +169,7 @@ header {
 .column-head-div {
   display: flex;
   align-items: center;
-  gap: 10px; /* Space between dot and column title */
+  gap: 10px;
 }
 
 .columnHeader {
@@ -163,7 +183,7 @@ header {
 .dot {
   height: 15px;
   width: 15px;
-  border-radius: 50%; /* Make it circular */
+  border-radius: 50%;
   display: inline-block;
 }
 
@@ -197,7 +217,7 @@ header {
   color: var(--primary-font-color);
   border-radius: 12px;
   box-shadow: var(--primary-box-shadow);
-  cursor: pointer; /* Indicate it's clickable */
+  cursor: pointer;
   margin-bottom: 20px;
   font-size: 0.9375rem;
   font-weight: bold;
@@ -211,20 +231,57 @@ h2 {
   margin: 0;
 }
 
+/* Styling for Theme Toggle */
+#theme-toggle {
+  width: 100%;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-top: 300px;
+  padding: 10px;
+  background-color: var(--footer-bg);
+}
+
+#hidebar {
+  background-color: white;
+  color: black;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* Theme for Dark mode */
+body.dark-mode {
+  --primary-color: #2b2c37;
+  --secondary-color: #22223b;
+  --primary-font-color: #f4f7fd;
+  --secondary-font-color: #a3a3a3;
+  --primary-box-shadow: 0px 4px 6px rgba(0,0,0,0.2);
+  --bg-color: #22223b;
+  --text-color: #f4f7fd;
+  --sidebar-bg: #2b2c37;
+}
+
 /* ===============
    Modal Styles
 ================ */
-/* Remove default dialog styles */
 dialog {
   position: fixed;
-
   border: none;
   padding: 0;
   margin: 0;
   background: none;
 }
 
-/* Style the modal box */
 #task-modal::backdrop {
   background: rgba(0, 0, 0, 0.3);
 }
@@ -239,10 +296,8 @@ dialog {
   padding: 24px;
   background-color: #fff;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  /*font-family: "Plus Jakarta Sans", sans-serif;*/
 }
 
-/* Header */
 .modal-header {
   display: flex;
   justify-content: space-between;
@@ -263,7 +318,7 @@ dialog {
   cursor: pointer;
   color: #ea5555;
   transition: transform 0.2s ease-in-out, font-weight 0.2s ease-in-out;
-  transition-delay: 0.1s; /* Delay before scaling */
+  transition-delay: 0.1s;
 }
 
 .close-btn:hover {
@@ -275,6 +330,32 @@ dialog {
   outline: none;
 }
 
+/* Style for the Create Task button in the modal */
+#create-task-btn {
+  background-color: #635fc7;
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  padding: 8px 16px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%; /* Makes it same width as the select if select is 100% */
+  margin-top: 16px;
+  transition: background 0.2s;
+  box-sizing: border-box;
+}
+
+#create-task-btn:hover {
+  background-color: #4b47a3;
+}
+
+/* Ensure the select is also 100% width for consistency */
+#task-status {
+  width: 100%;
+  border-radius: 24px;
+  box-sizing: border-box;
+}
 /* Form elements */
 form label {
   display: block;
@@ -298,27 +379,26 @@ form select {
 }
 
 form select {
-  appearance: none; /* Remove native arrow */
+  appearance: none;
   background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="%23828FA3" stroke-width="3" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></svg>')
     no-repeat right 0.75rem center;
-
   background-size: 1.4rem;
   padding-right: 1rem;
 }
 
-/* ========================
+/* ===============
    Responsive Styles
-======================== */
+================ */
 
 /******** Tablets ********/
 @media screen and (max-width: 1023px) {
   .side-bar {
-    display: none; /* Hide sidebar on tablets and smaller */
+    display: none;
   }
 
   .side-bar.show-sidebar {
     display: flex !important;
-    position: fixed; /* Overlay on top of page */
+    position: fixed;
     height: auto;
   }
 
@@ -347,7 +427,7 @@ form select {
   .container {
     padding: 0;
     width: 100%;
-    align-items: center; /* Center columns on smaller screens */
+    align-items: center;
   }
 
   .card-column-main {
@@ -385,95 +465,50 @@ form select {
   .column-div {
     width: 100%;
   }
-  #task-modal {
-  width: 90%;
-  max-width: 600px;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-/* Default Light Theme */
-:root {
-  --primary-bg: #ffffff;
-  --secondary-bg: #f4f7fd;
-  --primary-text: #000000;
-  --secondary-text: #828fa3;
-}
-
-/* Dark Theme */
-[data-theme="dark"] {
-  --primary-bg: #1e1e2e;
-  --secondary-bg: #282a36;
-  --primary-text: #ffffff;
-  --secondary-text: #c3c3c3;
-}
-
-/* Apply Theme Variables */
-body {
-  background-color: var(--primary-bg);
-  color: var(--primary-text);
-}
-
-/* Sidebar */
-.side-bar {
-  background-color: var(--secondary-bg);
-}
-
-/* Header */
-header {
-  background-color: var(--primary-bg);
-  color: var(--primary-text);
-  border-bottom: 1px solid var(--secondary-text);
-}
-
-/* Modal */
-#task-modal {
-  background-color: var(--primary-bg);
-  color: var(--primary-text);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-}
-.theme-btn {
-  width: 100%;
-  padding: 10px;
-  background-color: var(--secondary-bg);
-  color: var(--primary-text);
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s ease-in-out;
-}
-
-.theme-btn:hover {
-  background-color: var(--primary-text);
-  color: var(--secondary-bg);
-}
-.theme-btn {
-  width: 100%;
-  padding: 10px;
-  background-color: var(--secondary-bg);
-  color: var(--primary-text);
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s ease-in-out;
-}
-
-.theme-btn:hover {
-  background-color: var(--primary-text);
-  color: var(--secondary-bg);
-}
+  .dark-mode {
+    background-color: #1E1E1E;
+    color: white;
+  }
 }
 
 /******** Mobile ********/
 @media screen and (max-width: 576px) {
   .card-column-main {
-    grid-template-columns: minmax(
-      0,
-      380px
-    ); /* Stack columns in single column */
+    grid-template-columns: minmax(0, 380px);
   }
 
   .column-div {
     padding: 24px;
+  }
+}
+
+/* Button utility class (if needed) */
+.button {
+  background-color: rgba(99, 95, 199, 1);
+  color: #ffffff;
+  width: 164px;
+  height: 48px;
+  border-radius: 24px;
+  cursor: pointer;
+  border-radius: 0 100px 100px 0;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+@media screen and (max-width: 576px) {
+  #add-new-task-btn {
+    border-radius: 50%;
+    width: 48px;
+    height: 48px;
+    padding: 0;
+    font-size: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 8px;
+  }
+  #add-new-task-btn .add-text {
+    display: none;
   }
 }

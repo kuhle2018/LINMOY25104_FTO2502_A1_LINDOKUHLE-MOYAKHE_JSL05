@@ -84,14 +84,74 @@ function setupModalCloseHandler() {
   });
 }
 
-/**
- * Initializes the task board and modal handlers.
- */
-function initTaskBoard() {
+document.addEventListener("DOMContentLoaded", () => {
+  const addTaskBtn = document.getElementById("add-new-task-btn");
+  const taskModal = document.getElementById("task-modal");
+  const closeModalBtn = document.getElementById("close-modal-btn");
+  const createTaskBtn = document.getElementById("create-task-btn");
+  const body = document.body;
+
+  // Open Task Modal
+  addTaskBtn.addEventListener("click", () => {
+    taskModal.showModal();
+  });
+
+  // Close Task Modal
+  closeModalBtn.addEventListener("click", () => {
+    taskModal.close();
+  });
+
+  // Create Task and Append to Column
+  createTaskBtn.addEventListener("click", () => {
+    const taskTitle = document.getElementById("task-title").value;
+    const taskDesc = document.getElementById("task-desc").value;
+    const taskStatus = document.getElementById("task-status").value;
+
+    if (taskTitle.trim()) {
+      const taskElement = document.createElement("div");
+      taskElement.className = "task-card";
+      taskElement.innerHTML = `<h4>${taskTitle}</h4><p>${taskDesc}</p>`;
+      taskElement.style.backgroundColor = "#6A0DAD"; // Purple styling
+
+      document.querySelector(`[data-status="${taskStatus}"] .tasks-container`).appendChild(taskElement);
+      taskModal.close();
+    }
+  });
+
+  // Theme Toggle using a Clickable Bar
+  const themeToggle = document.getElementById("theme-toggle");
+  themeToggle.addEventListener("click", () => {
+    body.classList.toggle("dark-mode");
+    // Save preference
+    if (body.classList.contains("dark-mode")) {
+      localStorage.setItem("theme", "dark");
+    } else {
+      localStorage.setItem("theme", "light");
+    }
+  });
+
+  // On load, set theme from localStorage
+  if (localStorage.getItem("theme") === "dark") {
+    body.classList.add("dark-mode");
+  }
+
+  // Hide sidebar functionality (if you want to keep it)
+  const hidebarBtn = document.getElementById("hidebar");
+  if (hidebarBtn) {
+    hidebarBtn.addEventListener("click", () => {
+      document.getElementById("side-bar-div").classList.toggle("hidden");
+    });
+  }
+
+  // Ensure Buttons Stay Purple
+  document.querySelectorAll(".task-card, .board-btn").forEach(element => {
+    element.style.backgroundColor = "#6A0DAD"; // Ensures consistent purple styling
+  });
+
+  // Initialize board and modal handlers
   clearExistingTasks();
   renderTasks(initialTasks);
   setupModalCloseHandler();
-}
+});
 
-// Wait until DOM is fully loaded
-document.addEventListener("DOMContentLoaded", initTaskBoard);
+// (No more code after this)
