@@ -661,3 +661,8 @@ button:hover {
     display: none;
   }
 }
+@media screen and (max-width: 576px) {
+  .side-bar {
+    display: none !important;
+  }
+}
