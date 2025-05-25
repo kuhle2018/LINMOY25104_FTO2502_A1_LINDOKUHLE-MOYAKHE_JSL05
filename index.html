@@ -25,22 +25,28 @@ href="./assets/favicon.svg"/>
 <h4 id="headline-sidepanel">ALL BOARDS (1)</h4>
 <button class="board-btn">Launch Career</button>
 </div>
-<!-- Theme Toggle Bar -->
-       <div id="bottom-sidebar">
-        <div class="theme-toggle sidebar-deskop-dark-container">
-          <span id="light-mode-icon">🌞</span>
-          <div class ="toggle-theme-btn sidebar-deskop-button">
-            <div class="switch-circle">
-              </div>
-            </div>
-            <span id="dark-mode-icon">🌚</span>
-           </div>
-<div id="sidebar-toggle-container" class="sidebar-deskop-dark-container">
-  <span id="close-sidebar-icon">🚫</span>
-  <span id="close-sidebar-text">Hide sidebar</span>
-   </div>
+<!-- Theme Toggle and Sidebar Controls at the bottom of the sidebar -->
+<div id="bottom-sidebar">
+  <div id="theme-toggle" class="theme-toggle-container sidebar-deskop-dark-container" role="button" tabindex="0" aria-label="Toggle light/dark mode">
+    <span id="light-mode-icon">🌞</span>
+    <div class="toggle-theme-btn sidebar-deskop-button">
+      <div class="switch-circle"></div>
+    </div>
+    <span id="dark-mode-icon">🌚</span>
   </div>
+  <div id="sidebar-toggle-container" class="sidebar-deskop-dark-container">
+    <button id="hidebar" type="button">
+    <span id="close-sidebar-icon">🚫</span>
+    <span id="close-sidebar-text">Hide sidebar</span>
+    </button>
+</div>
+</div>
 </nav>
+<!-- Show Sidebar Button (hidden by default) -->
+<button id="show-sidebar-btn" type="button" aria-label="Show sidebar" style="display: none;">
+  <span id="show-sidebar-icon">👀</span>
+</button>
+
 <!-- Main Layout: Header with board title, add task button, and main content area for task columns. -->
 <div id="layout">
   <header id="header" class="sticky-header">
@@ -89,21 +95,22 @@ href="./assets/favicon.svg"/>
     </div>
   </div>
 <!-- Modal: Displays each tasks details when the task is clicked -->
-    <dialog id="task-modal">
-      <form method="dialog" id="task-form">
-        <div class="modal-header">
-          <h3>Task</h3>
-          <button type="button" class="close-btn" id="close-modal-btn">
-            &times;
-          </button>
-        </div>
+  <dialog id="task-modal">
+  <form method="dialog">
+    <div class="modal-header">
+      <h2>Add New Task</h2>
+        <button type="button" class="close-btn" id="close-modal-btn">
+        &times;
+      </button>
+    </div>
+<label for="task-title">Title</label>
+<input type="text" id="task-title" name="title" required placeholder="e.g. Take Chilled Break" />
+<div class="input-hint" id="title-hint"><span class="hint-icon">❗</span> Please fill out this field.</div>
 
-        <label for="task-title">Title</label>
-        <input type="text" id="task-title" name="title" required />
-
-        <label for="task-desc">Description</label>
-        <textarea id="task-desc" name="description" rows="4"></textarea>
-
+<label for="task-desc">Description</label>
+<textarea id="task-desc" name="description" rows="4" placeholder="e.g Pet your dog, have a cup of coffee, 
+dance to your favourite song and come 
+back to crush this challenge."></textarea>
         <label for="task-status">Status</label>
         <select id="task-status" name="status" required>
           <option value="todo">todo</option>

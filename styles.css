@@ -78,7 +78,7 @@ h4 {
   display: flex;
   align-items: center;
   gap: 10px;
-  background-color: #635fc7;
+  background-color: #635fc7 !important;
   color: #fff;
   border: none;
   border-radius: 0 100px 100px 0;
@@ -89,6 +89,10 @@ h4 {
   font-weight: bold;
   cursor: pointer;
   overflow: hidden;
+}
+
+body.dark-mode .board-btn {
+  background-color: #4b47a3 !important; /* or another color for dark mode */
 }
 
 /* ===============
@@ -232,15 +236,6 @@ h2 {
 }
 
 /* Styling for Theme Toggle */
-#theme-toggle {
-  width: 100%;
-  height: 40px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  justify-content: center;
-}
 
 footer {
   display: flex;
@@ -252,8 +247,8 @@ footer {
 }
 
 #hidebar {
-  background-color: white;
-  color: black;
+  background-color: #e4ebfa;
+  color: #4b47a3;
   border: none;
   padding: 5px 10px;
   cursor: pointer;
@@ -269,6 +264,148 @@ body.dark-mode {
   --bg-color: #22223b;
   --text-color: #f4f7fd;
   --sidebar-bg: #2b2c37;
+}
+/* Theme toggle and sidebar controls at the bottom of sidebar */
+#bottom-sidebar {
+  position: absolute;
+  bottom: 32px;
+  left: 0;
+  width: 100%; /* 100% of sidebar, not page */
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+#theme-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background: #e4ebfa; /* medium grey */
+  box-shadow: 0 2px 8px rgba(54, 78, 126, 0.15);
+  border-radius: 8px;
+  padding: 10px 24px;
+  width: 90%;
+
+  transition: background 0.2s;
+}
+#theme-toggle,
+#sidebar-toggle-container {
+  width: 90%;         /* 90% of sidebar width */
+  max-width: 260px;   /* Optional: prevents being too wide */
+  min-width: 180px;   /* Optional: for small screens */
+  margin: 0;          /* Remove margin: 0 auto; if present */
+}
+
+#theme-toggle .toggle-theme-btn {
+  background: #635fc7;
+  border-radius: 16px;
+  width: 40px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+}
+
+#theme-toggle .switch-circle {
+  background: #fff;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  margin-left: 2px;
+  transition: margin-left 0.3s;
+}
+
+#sidebar-toggle-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e4ebfa; /* medium grey */
+  box-shadow: 0 2px 8px rgba(54, 78, 126, 0.15);
+  border-radius: 8px;
+  width: 90%;
+  padding: 10px 0;
+  gap: 8px;
+  cursor: pointer;
+}
+/* Theme toggle switch animation and icon highlighting */
+#theme-toggle .toggle-theme-btn {
+  background: #635fc7;
+  border-radius: 16px;
+  width: 40px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+#theme-toggle .switch-circle {
+  background: #fff;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+  left: 2px;
+  transition: left 0.3s;
+}
+
+/* Move the switch to the right in dark mode */
+body.dark-mode #theme-toggle .switch-circle {
+  left: 22px;
+}
+
+/* Optional: Change toggle background for dark mode */
+body.dark-mode #theme-toggle .toggle-theme-btn {
+  background: #22223b;
+}
+
+/* Dim inactive icon, highlight active */
+#theme-toggle #light-mode-icon,
+#theme-toggle #dark-mode-icon {
+  opacity: 0.5;
+  transition: opacity 0.2s;
+}
+body:not(.dark-mode) #theme-toggle #light-mode-icon {
+  opacity: 1;
+}
+body.dark-mode #theme-toggle #dark-mode-icon {
+  opacity: 1;
+}
+/* Hide the sidebar when .hidden is added */
+.side-bar.hidden {
+  display: none !important;
+}
+#show-sidebar-btn {
+  position: absolute;
+  bottom: 40px;
+  left: 0;
+  z-index: 100;
+  background: #e4ebfa; /* medium grey */
+  border: none;
+  border-radius: 8px;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(54, 78, 126, 0.15);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#show-sidebar-btn:hover {
+  background: #d1d5e9;
+}
+
+/* Responsive: make sure bottom sidebar stays at the bottom */
+@media (max-width: 1023px) {
+  #bottom-sidebar {
+    position: static;
+    margin-top: 32px;
+  }
 }
 
 /* ===============
@@ -385,6 +522,18 @@ form select {
   background-size: 1.4rem;
   padding-right: 1rem;
 }
+.input-hint {
+  display: flex;
+  box-shadow: 0px 10px 20px 0px rgba(54, 78, 126, 0.25);
+  width: 190px;
+  height: 48px;
+  border-radius: 8px;
+  background: #fff; /* or background: rgba(255, 255, 255, 1); */
+  /* Optional positioning if needed: */
+  /* position: center;
+     top: 405px;
+     left: 601px; */
+}
 
 /* ===============
    Responsive Styles
@@ -393,7 +542,8 @@ form select {
 /******** Tablets ********/
 @media screen and (max-width: 1023px) {
   .side-bar {
-    display: none;
+    position: relative;
+    width: var(--sidebar-width); /* e.g., 300px /* ...other styles... */
   }
 
   .side-bar.show-sidebar {
@@ -488,8 +638,7 @@ form select {
   color: #ffffff;
   width: 164px;
   height: 48px;
-  border-radius: 24px;
-  cursor: pointer;
+    cursor: pointer;
   border-radius: 0 100px 100px 0;
 }
 

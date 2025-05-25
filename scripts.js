@@ -91,6 +91,18 @@ document.addEventListener("DOMContentLoaded", () => {
   const createTaskBtn = document.getElementById("create-task-btn");
   const body = document.body;
 
+  const titleInput = document.getElementById("task-title");
+  const titleHint = document.getElementById("title-hint");
+  if (titleInput && titleHint) {
+    titleInput.addEventListener("input", () => {
+      if (titleInput.value.trim() !== "") {
+        titleHint.style.display = "none";
+      } else {
+        titleHint.style.display = "flex";
+      }
+    });
+  }
+
   // Open Task Modal
   addTaskBtn.addEventListener("click", () => {
     taskModal.showModal();
@@ -135,13 +147,22 @@ document.addEventListener("DOMContentLoaded", () => {
     body.classList.add("dark-mode");
   }
 
-  // Hide sidebar functionality (if you want to keep it)
+  
   const hidebarBtn = document.getElementById("hidebar");
-  if (hidebarBtn) {
-    hidebarBtn.addEventListener("click", () => {
-      document.getElementById("side-bar-div").classList.toggle("hidden");
-    });
-  }
+const sidebar = document.getElementById("side-bar-div");
+const showSidebarBtn = document.getElementById("show-sidebar-btn");
+
+if (hidebarBtn && sidebar && showSidebarBtn) {
+  hidebarBtn.addEventListener("click", () => {
+    sidebar.classList.add("hidden");
+    showSidebarBtn.style.display = "flex";
+  });
+
+  showSidebarBtn.addEventListener("click", () => {
+    sidebar.classList.remove("hidden");
+    showSidebarBtn.style.display = "none";
+  });
+}
 
   // Ensure Buttons Stay Purple
   document.querySelectorAll(".task-card, .board-btn").forEach(element => {
